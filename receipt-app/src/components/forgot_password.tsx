@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import styles from "./register.module.css";
 
 function ForgotPassword() {
   const [newP, setnewP] = useState("");
@@ -14,29 +14,33 @@ function ForgotPassword() {
 
   return (
     <Fragment>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="passsword">New Password</label>
-        <input
-          value={newP}
-          onChange={(e) => setnewP(e.target.value)}
-          type="password"
-          id="newPassword"
-          name="newPassword"
-          placeholder="Enter new password"
-        />
-        <label htmlFor="password">Confirm New Password</label>
-        <input
-          value={confirmP}
-          onChange={(e) => setconfirmP(e.target.value)}
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          placeholder="Confirm new password"
-        />
-        <button type="submit" onClick={() => navigate("/login")}>
-          Reset Password
-        </button>
-      </form>
+      <div className={styles.registerbody}>
+        <form className={styles.registerForm} onSubmit={handleSubmit}>
+          <h3>Reset Password</h3>
+          <label htmlFor="password">New Password</label>
+          <input
+            value={newP}
+            onChange={(e) => setnewP(e.target.value)}
+            type="password"
+            size={50}
+            id="newPassword"
+            name="newPassword"
+            placeholder="********"
+          />
+          <label htmlFor="password">Confirm New Password</label>
+          <input
+            value={confirmP}
+            onChange={(e) => setconfirmP(e.target.value)}
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="********"
+          />
+          <button type="submit" onClick={() => navigate("/login")}>
+            Reset Password
+          </button>
+        </form>
+      </div>
     </Fragment>
   );
 }
