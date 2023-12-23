@@ -34,4 +34,6 @@ using bootstrap for styling- updated bootstrap in main.tsx
 using react-router-dom for navigation
 a component cannot return more than one element, so it can be wrapped in a div or create a fragment
 we are using typescript and JSX
+performing machine learning on over 1000 images of receipts to extract data with different languages
+using AI generated images from Open Journey v4 image generation model
  */

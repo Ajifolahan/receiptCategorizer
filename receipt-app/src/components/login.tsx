@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./register.module.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,7 +37,9 @@ function Login() {
             name="password"
             placeholder="********"
           />
-          <button type="submit">Login</button>
+          <button type="button" onClick={() => navigate("/receipt")}>
+            Login
+          </button>
         </form>
         <div className={styles.linksContainer}>
           <Link to="/forgot" className={styles.link}>

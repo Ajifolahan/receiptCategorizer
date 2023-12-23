@@ -36,7 +36,7 @@ function ForgotPassword() {
             name="confirmPassword"
             placeholder="********"
           />
-          <button type="submit" onClick={() => navigate("/login")}>
+          <button type="button" onClick={() => navigate("/login")}>
             Reset Password
           </button>
         </form>
