@@ -68,6 +68,11 @@
     background-color: gray;
 }
 
+.message{
+    text-align: center;
+    color: red;
+}
+
 .linksContainer {
     display: flex;
     justify-content: center;
