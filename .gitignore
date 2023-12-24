@@ -1,2 +1,3 @@
-flask-server/secrets.env
+flask-server/mysecrets.py
+flask-server/__pycache__
 notes

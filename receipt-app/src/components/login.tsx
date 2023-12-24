@@ -1,16 +1,36 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./register.module.css";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [message, setMessage] = useState(""); // display message to the user
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    setMessage(""); // Clear the message when the component is first rendered
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, pass);
+    try {
+      const response = await axios.post("http://localhost:5000/login", {
+        email,
+        pass,
+      }); //we send the email and password to the api backend. We are making a post request to the api backend
+      console.log(response.data);
+      if (response.data.message === "User logged in successfully") {
+        // if the user was created successfully, we redirect them to the login page
+        setTimeout(() => {
+          navigate("/receipt");
+        }, 2000);
+      }
+      setMessage(response.data.message); // we get the message from the api backend and display it to the user
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -37,10 +57,9 @@ function Login() {
             name="password"
             placeholder="********"
           />
-          <button type="button" onClick={() => navigate("/receipt")}>
-            Login
-          </button>
+          <button type="submit">Login</button>
         </form>
+        <p className={styles.message}>{message}</p>
         <div className={styles.linksContainer}>
           <Link to="/forgot" className={styles.link}>
             Forgot Password

@@ -21,13 +21,16 @@ function Register() {
         pass,
       }); //we send the email and password to the api backend. We are making a post request to the api backend
       console.log(response.data);
-      setMessage(response.data.message); // we get the message from the api backend and display it to the user
-      if (response.data.message === "User registered successfully") {
+      if (
+        response.data.message === "User registered successfully" ||
+        response.data.message === "Email address already in use"
+      ) {
         // if the user was created successfully, we redirect them to the login page
         setTimeout(() => {
           navigate("/login");
         }, 2000);
       }
+      setMessage(response.data.message); // we get the message from the api backend and display it to the user
     } catch (error) {
       console.error(error);
     }
@@ -60,9 +63,6 @@ function Register() {
       </form>
       <p className={styles.message}>{message}</p>
       <div className={styles.linksContainer}>
-        <Link to="/forgot" className={styles.link}>
-          Forgot Password
-        </Link>
         <Link to="/login" className={styles.link}>
           Already have an account? Log in
         </Link>
